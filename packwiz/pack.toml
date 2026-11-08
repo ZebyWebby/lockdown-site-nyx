@@ -1,0 +1,13 @@
+name = "Lockdown: Site Nyx"
+author = "ZebyWebby"
+version = "0.5.8"
+pack-format = "packwiz:1.1.0"
+
+[index]
+file = "index.toml"
+hash-format = "sha256"
+hash = "ebcb3d236bf3de4871193543425a6c0a490affa01c18958098ac4881cf744025"
+
+[versions]
+fabric = "0.20.1"
+minecraft = "26.3"
