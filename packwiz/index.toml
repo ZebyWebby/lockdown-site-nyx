@@ -1,0 +1,34 @@
+hash-format = "sha256"
+
+[[files]]
+file = "config/EasyAuth/extended.conf"
+hash = "b06822c56b479bca30288a7afcfcef1869e1f954bc0eb9cde684d008486ea81f"
+
+[[files]]
+file = "config/EasyAuth/main.conf"
+hash = "ec30ca8d3d858ff5303c0e84a456a695175a81fa7600c9e5dd5f443d57eb4391"
+
+[[files]]
+file = "mods/easyauth.pw.toml"
+hash = "d98eb3bf18b3d218b73c8f15db6a21d320c250db2e9e48f277f476ea4a9d1c64"
+metafile = true
+
+[[files]]
+file = "mods/fabric-api.pw.toml"
+hash = "79de372a05dde6ee4f23ced936835dbd9d43b64ba61ae1990cb0e59dce460e6a"
+metafile = true
+
+[[files]]
+file = "mods/lockdown-site-nyx.pw.toml"
+hash = "c8278002505624cb26440d29c661603b51508c4d8c76ee03444eaacfcc7e590e"
+metafile = true
+
+[[files]]
+file = "mods/simple-voice-chat.pw.toml"
+hash = "6865b44c30baa85a87c344ac9d3e0eb0135e90b26a90a6dc28bf79a363170cf9"
+metafile = true
+
+[[files]]
+file = "mods/skinsrestorer.pw.toml"
+hash = "d164f90e34e66e54ad3097be3e3cb3c4e249a5b5c72d715a5f94213493a0f7dc"
+metafile = true
