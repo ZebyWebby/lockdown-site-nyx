@@ -2,7 +2,7 @@ LOCKDOWN: SITE NYX - server setup (Minecraft Java 26.3, Fabric, PufferPanel on U
 ==================================================================================
 
 What's in here
-  mods/lockdown-site-nyx-0.5.2.jar     the game
+  mods/lockdown-site-nyx-0.5.3.jar     the game
   mods/fabric-api-0.165.2+26.3.jar     needed by the game
   fabric-server-launch.jar             Fabric server (Minecraft 26.3, loader 0.20.1) - downloads the game files on first start
   install-lockdown.sh                  first-time setup of a PufferPanel server
