@@ -10,8 +10,20 @@ STAMP=$(date +%Y%m%d_%H%M%S)
 mkdir -p "$DIR/lockdown_backups/$STAMP"
 cp "$DIR"/mods/lockdown-site-nyx-*.jar "$DIR/lockdown_backups/$STAMP/" 2>/dev/null || true
 for f in "$DIR/config/lockdown_profiles.json" "$DIR/world/lockdown_profiles.json"; do [ -f "$f" ] && cp "$f" "$DIR/lockdown_backups/$STAMP/"; done
-rm -f "$DIR"/mods/lockdown-site-nyx-*.jar "$DIR"/mods/fabric-api-*.jar "$DIR"/mods/voicechat-*.jar
+rm -f "$DIR"/mods/lockdown-site-nyx-*.jar "$DIR"/mods/fabric-api-*.jar "$DIR"/mods/voicechat-*.jar "$DIR"/mods/SkinsRestorer-*.jar "$DIR"/mods/easyauth-*.jar
 cp "$HERE"/mods/*.jar "$DIR/mods/"
+# EasyAuth: premium players are recognised automatically (and keep their stats); cracked players join without a password
+mkdir -p "$DIR/config/EasyAuth"
+cp "$HERE"/config/EasyAuth/main.conf "$HERE"/config/EasyAuth/extended.conf "$DIR/config/EasyAuth/"
+setprop() {
+  local esc
+  esc=$(printf '%s' "$2" | sed 's/[\\&|]/\\&/g')
+  if grep -q "^$1=" "$DIR/server.properties"; then sed -i "s|^$1=.*|$1=$esc|" "$DIR/server.properties"; else printf '%s=%s\n' "$1" "$2" >> "$DIR/server.properties"; fi
+}
+if [ -f "$DIR/server.properties" ]; then
+  setprop online-mode true             # EasyAuth needs this; it lets cracked players in by itself
+  setprop enforce-secure-profile false # cracked players can't sign chat messages
+fi
 id pufferpanel >/dev/null 2>&1 && chown -R pufferpanel:pufferpanel "$DIR"
 echo "Updated. Old mod + stats backed up in $DIR/lockdown_backups/$STAMP"
 echo "Restart the server in PufferPanel. Players need the new lockdown jar too."

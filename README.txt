@@ -2,9 +2,12 @@ LOCKDOWN: SITE NYX - server setup (Minecraft Java 26.3, Fabric, PufferPanel on U
 ==================================================================================
 
 What's in here
-  mods/lockdown-site-nyx-0.5.7.jar     the game
+  mods/lockdown-site-nyx-0.5.8.jar     the game
   mods/fabric-api-0.165.2+26.3.jar     needed by the game
   mods/voicechat-fabric-2.6.27+26.3.jar  Simple Voice Chat (proximity voice). Needs UDP port 24454 open.
+  mods/SkinsRestorer-Mod-Fabric-15.12.6.jar  /skin <name>, /skin url <link> [classic|slim]
+  mods/easyauth-mc26.3-3.4.4.jar       lets cracked players join; premium players keep their accounts and stats
+  config/EasyAuth/                     EasyAuth settings (no passwords; premium names stay protected)
   fabric-server-launch.jar             Fabric server (Minecraft 26.3, loader 0.20.1) - downloads the game files on first start
   install-lockdown.sh                  first-time setup of a PufferPanel server
   update-lockdown.sh                   updates an existing Lockdown server (keeps world, levels and stats)
@@ -43,3 +46,14 @@ VOICE CHAT (Simple Voice Chat)
      sudo iptables -I INPUT -p udp --dport 24454 -j ACCEPT && sudo netfilter-persistent save
   and in the Oracle Cloud console: VCN -> Security List -> Add Ingress Rule: source 0.0.0.0/0, UDP, port 24454.
   Players' Lockdown mod installs Simple Voice Chat by itself (restart Minecraft once). Press V in game for settings.
+
+CRACKED PLAYERS (EasyAuth)
+  server.properties keeps online-mode=true - EasyAuth lets cracked players in by itself, with no /register or /login.
+  Premium players are recognised automatically and keep their UUID, so levels/stats are untouched.
+  A cracked player whose name belongs to a paid account can't join with it (that protects real accounts).
+  If that happens to a friend, run in the console:  auth markAsOffline <name>
+  Don't make cracked players operators: EasyAuth would ask them for a password.
+
+SKINS (SkinsRestorer)
+  /skin <player name>          copy any premium player's skin
+  /skin url <image link> [classic|slim]   use a skin image from the web (direct .png link)
