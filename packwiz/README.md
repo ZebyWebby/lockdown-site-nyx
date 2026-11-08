@@ -11,7 +11,7 @@ Every jar is pinned to the exact version (and hash) that ships in `mods/`.
 | EasyAuth 3.4.4 | server | Modrinth |
 | SkinsRestorer 15.12.6 | server | Modrinth |
 
-`config/EasyAuth/` is included too (packwiz can't mark plain files as server only, so clients get it as well; it does nothing there).
+`config/EasyAuth/` (all five EasyAuth files) is included too (packwiz can't mark plain files as server only, so clients get it as well; it does nothing there).
 
 Minecraft 26.3, Fabric Loader 0.20.1, Java 25.
 
@@ -36,13 +36,7 @@ From the server folder (next to `fabric-server-launch.jar`):
 
 ## Updating the pack
 
-After a new release is committed to `mods/`:
-
-    cd packwiz
-    packwiz remove lockdown-site-nyx
-    packwiz url add "Lockdown: Site Nyx" https://raw.githubusercontent.com/ZebyWebby/lockdown-site-nyx/main/mods/lockdown-site-nyx-<version>.jar --meta-name lockdown-site-nyx
-    # then bump `version` in pack.toml and, for the other mods:
-    packwiz update --all
-    packwiz refresh
-
-Push the new jar before (or together with) the pack change, since the pack points at its raw GitHub URL.
+Nothing to do by hand: after every push that changes `mods/` or `config/`, the GitHub Action
+`.github/workflows/sync-packwiz.yml` runs `tools/sync_packwiz.py`, which rebuilds this folder from the jars and
+configs in the repo (Modrinth jars are matched by hash, Lockdown points at its jar in `mods/`) and commits the result.
+To run it locally: `python3 tools/sync_packwiz.py`.
