@@ -2,8 +2,9 @@ LOCKDOWN: SITE NYX - server setup (Minecraft Java 26.3, Fabric, PufferPanel on U
 ==================================================================================
 
 What's in here
-  mods/lockdown-site-nyx-0.5.5.jar     the game
+  mods/lockdown-site-nyx-0.5.6.jar     the game
   mods/fabric-api-0.165.2+26.3.jar     needed by the game
+  mods/voicechat-fabric-2.6.27+26.3.jar  Simple Voice Chat (proximity voice). Needs UDP port 24454 open.
   fabric-server-launch.jar             Fabric server (Minecraft 26.3, loader 0.20.1) - downloads the game files on first start
   install-lockdown.sh                  first-time setup of a PufferPanel server
   update-lockdown.sh                   updates an existing Lockdown server (keeps world, levels and stats)
@@ -36,3 +37,9 @@ UPDATING (keeps levels, stats and cosmetics)
      cd ~/lockdown-server
      sudo bash ./update-lockdown.sh /var/lib/pufferpanel/servers/<ID>
   Start the server again. Stats live in config/lockdown_profiles.json and a backup is made in lockdown_backups/ each time.
+
+VOICE CHAT (Simple Voice Chat)
+  Open UDP port 24454 on the machine (Oracle Ubuntu images use iptables):
+     sudo iptables -I INPUT -p udp --dport 24454 -j ACCEPT && sudo netfilter-persistent save
+  and in the Oracle Cloud console: VCN -> Security List -> Add Ingress Rule: source 0.0.0.0/0, UDP, port 24454.
+  Players' Lockdown mod installs Simple Voice Chat by itself (restart Minecraft once). Press V in game for settings.

@@ -10,7 +10,7 @@ STAMP=$(date +%Y%m%d_%H%M%S)
 mkdir -p "$DIR/lockdown_backups/$STAMP"
 cp "$DIR"/mods/lockdown-site-nyx-*.jar "$DIR/lockdown_backups/$STAMP/" 2>/dev/null || true
 for f in "$DIR/config/lockdown_profiles.json" "$DIR/world/lockdown_profiles.json"; do [ -f "$f" ] && cp "$f" "$DIR/lockdown_backups/$STAMP/"; done
-rm -f "$DIR"/mods/lockdown-site-nyx-*.jar "$DIR"/mods/fabric-api-*.jar
+rm -f "$DIR"/mods/lockdown-site-nyx-*.jar "$DIR"/mods/fabric-api-*.jar "$DIR"/mods/voicechat-*.jar
 cp "$HERE"/mods/*.jar "$DIR/mods/"
 id pufferpanel >/dev/null 2>&1 && chown -R pufferpanel:pufferpanel "$DIR"
 echo "Updated. Old mod + stats backed up in $DIR/lockdown_backups/$STAMP"
