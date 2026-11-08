@@ -15,6 +15,9 @@ cp "$HERE"/mods/*.jar "$DIR/mods/"
 # EasyAuth: premium players are recognised automatically (and keep their stats); cracked players join without a password
 mkdir -p "$DIR/config/EasyAuth"
 cp "$HERE"/config/EasyAuth/main.conf "$HERE"/config/EasyAuth/extended.conf "$DIR/config/EasyAuth/"
+for f in storage.conf technical.conf translation.conf; do   # EasyAuth needs all of them; keep any existing ones
+  [ -f "$DIR/config/EasyAuth/$f" ] || cp "$HERE/config/EasyAuth/$f" "$DIR/config/EasyAuth/"
+done
 setprop() {
   local esc
   esc=$(printf '%s' "$2" | sed 's/[\\&|]/\\&/g')
