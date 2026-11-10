@@ -1,12 +1,12 @@
 name = "Lockdown: Site Nyx"
 author = "ZebyWebby"
-version = "0.5.16"
+version = "0.5.17"
 pack-format = "packwiz:1.1.0"
 
 [index]
 file = "index.toml"
 hash-format = "sha256"
-hash = "d4e515b8b0a975e3ef03145f66d33d6c563186389f75f5718cd30470854e2971"
+hash = "cff39e0f58cd94be53d7c32acd9d2ec82534e0eecf8b1e3971e6d6ab81619d86"
 
 [versions]
 fabric = "0.20.1"

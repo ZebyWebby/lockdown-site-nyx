@@ -9,7 +9,7 @@ HERE="$(cd "$(dirname "$0")" && pwd)"
 STAMP=$(date +%Y%m%d_%H%M%S)
 mkdir -p "$DIR/lockdown_backups/$STAMP"
 cp "$DIR"/mods/lockdown-site-nyx-*.jar "$DIR/lockdown_backups/$STAMP/" 2>/dev/null || true
-for f in "$DIR/config/lockdown_profiles.json" "$DIR/world/lockdown_profiles.json"; do [ -f "$f" ] && cp "$f" "$DIR/lockdown_backups/$STAMP/"; done
+for f in "$DIR/config/lockdown_profiles.json" "$DIR/world/lockdown_profiles.json" "$DIR/config/lockdown_backup.key"; do [ -f "$f" ] && cp "$f" "$DIR/lockdown_backups/$STAMP/"; done
 rm -f "$DIR"/mods/lockdown-site-nyx-*.jar "$DIR"/mods/fabric-api-*.jar "$DIR"/mods/voicechat-*.jar "$DIR"/mods/SkinsRestorer-*.jar "$DIR"/mods/easyauth-*.jar
 cp "$HERE"/mods/*.jar "$DIR/mods/"
 # EasyAuth: premium players are recognised automatically (and keep their stats); cracked players join without a password
