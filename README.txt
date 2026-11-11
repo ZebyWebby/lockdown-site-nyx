@@ -2,10 +2,12 @@ LOCKDOWN: SITE NYX - server setup (Minecraft Java 26.3, Fabric, PufferPanel on U
 ==================================================================================
 
 What's in here
-  mods/lockdown-site-nyx-0.5.17.jar     the game
+  mods/lockdown-site-nyx-0.5.18.jar     the game
   mods/fabric-api-0.165.2+26.3.jar     needed by the game
   mods/voicechat-fabric-2.6.27+26.3.jar  Simple Voice Chat (proximity voice). Needs UDP port 24454 open.
   mods/SkinsRestorer-Mod-Fabric-15.12.6.jar  /skin <name>, /skin url <link> [classic|slim]
+  mods/Geyser-Fabric-2.12.1-b1298.jar  lets Bedrock players join (UDP port 19132)
+  mods/Floodgate-Fabric-2.2.7-b69.jar  Bedrock players join without a Java account
   mods/easyauth-mc26.3-3.4.4.jar       lets cracked players join; premium players keep their accounts and stats
   config/EasyAuth/                     EasyAuth settings (no passwords; premium names stay protected)
   fabric-server-launch.jar             Fabric server (Minecraft 26.3, loader 0.20.1) - downloads the game files on first start
@@ -57,3 +59,11 @@ CRACKED PLAYERS (EasyAuth)
 SKINS (SkinsRestorer)
   /skin <player name>          copy any premium player's skin
   /skin url <image link> [classic|slim]   use a skin image from the web (direct .png link)
+
+BEDROCK PLAYERS (Geyser + Floodgate)
+  Bedrock players join with the server's address and port 19132. They don't need any mod.
+  Open UDP 19132 on the machine (Oracle Ubuntu images use iptables):
+     sudo iptables -I INPUT -p udp --dport 19132 -j ACCEPT && sudo netfilter-persistent save
+  and in the Oracle Cloud console: VCN -> Security List -> Add Ingress Rule: source 0.0.0.0/0, UDP, port 19132.
+  Lockdown's blocks are sent to them automatically (config/Geyser-Fabric/packs/lockdown_geyser.mcpack, written on start).
+  Their menus open as Bedrock windows. Their names start with a dot (.Name) so they never clash with Java names.

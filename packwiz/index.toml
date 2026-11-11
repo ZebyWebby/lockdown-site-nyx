@@ -31,8 +31,18 @@ hash = "79de372a05dde6ee4f23ced936835dbd9d43b64ba61ae1990cb0e59dce460e6a"
 metafile = true
 
 [[files]]
+file = "mods/floodgate.pw.toml"
+hash = "8f2df04d5d7caa0af5ef817bd9b0aa7614dc9aa5c120805728931ebbc7807bc3"
+metafile = true
+
+[[files]]
+file = "mods/geyser.pw.toml"
+hash = "70175bbf73f944a5823377a9ec193853331f6c8c754cfaa1437cd2c803f02930"
+metafile = true
+
+[[files]]
 file = "mods/lockdown-site-nyx.pw.toml"
-hash = "acb6c692f5cc44bc53215bc4fce01b9038efe45c684a0a40bed109ffb88f0db3"
+hash = "5f39519983280395897b03698ec78437462fa1374f683e481ffecc40515639e0"
 metafile = true
 
 [[files]]

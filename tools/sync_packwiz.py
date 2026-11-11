@@ -11,7 +11,7 @@ import hashlib, json, os, re, shutil, sys, urllib.request
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PW = os.path.join(ROOT, 'packwiz')
 RAW = 'https://raw.githubusercontent.com/ZebyWebby/lockdown-site-nyx/main/'
-SERVER_ONLY = ('easyauth', 'skinsrestorer')   # project slugs / name prefixes that clients don't need
+SERVER_ONLY = ('easyauth', 'skinsrestorer', 'geyser', 'floodgate')   # project slugs / name prefixes that clients don't need
 
 
 def sha(path, algo):
