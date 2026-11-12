@@ -2,7 +2,7 @@ LOCKDOWN: SITE NYX - server setup (Minecraft Java 26.3, Fabric, PufferPanel on U
 ==================================================================================
 
 What's in here
-  mods/lockdown-site-nyx-0.5.28.jar     the game
+  mods/lockdown-site-nyx-0.5.29.jar     the game
   mods/fabric-api-0.165.2+26.3.jar     needed by the game
   mods/voicechat-fabric-2.6.27+26.3.jar  Simple Voice Chat (proximity voice). Needs UDP port 24454 open.
   mods/SkinsRestorer-Mod-Fabric-15.12.6.jar  /skin <name>, /skin url <link> [classic|slim]
@@ -67,3 +67,39 @@ BEDROCK PLAYERS (Geyser + Floodgate)
   and in the Oracle Cloud console: VCN -> Security List -> Add Ingress Rule: source 0.0.0.0/0, UDP, port 19132.
   Lockdown's blocks are sent to them automatically (config/Geyser-Fabric/packs/lockdown_geyser.mcpack, written on start).
   Their menus open as Bedrock windows. Their names start with a dot (.Name) so they never clash with Java names.
+
+RANKS (OWNER, ADMIN, YOUTUBE, VIP)
+  /lockdown rank <player> owner|admin|youtube|vip|none     (operators and OWNERs)
+  /lockdown ranks                                          everyone with a rank, and what they donated
+  The player must have joined once. OWNER and ADMIN can use /lockdown and host rounds without being operators.
+  Every rank gets the VIP perks. They are all cosmetic, as Minecraft's usage guidelines require for anything sold:
+  the [VIP] tag and name colour, the Royal Hammer and Royal Gold glow, a lobby trail, escape fireworks, a Beast win
+  effect, a join message and +25% credits (never XP). Ranks are saved with the stats in config/lockdown_profiles.json.
+
+STORE (VIP and donations)
+  The mod serves the store page itself on TCP port 8085. Players type /store in game for the link.
+  VIP is lifetime, from the VIP price up (buyers can pay more); donations are any amount from the minimum.
+  Open the port first:
+       sudo iptables -I INPUT -p tcp --dport 8085 -j ACCEPT && sudo netfilter-persistent save
+     and in the Oracle Cloud console: VCN -> Security List -> Add Ingress Rule: source 0.0.0.0/0, TCP, port 8085.
+  Start the server once, edit config/lockdown/store.json, then /lockdown store reload (and /lockdown store to check).
+
+  Manual orders ("provider": "manual", the default) - you get paid your own way, e.g. Wise:
+       "enabled": true,
+       "publicUrl": "http://<your-server-ip>:8085",
+       "payLink": "https://...",            your Wise payment link (shown as a Pay now button), or leave empty
+       "payTo": "Wise: @yourwisetag",        shown on the order page
+       "payMethodsShown": ["Wise"],
+       "contact": "message ... on Discord",
+       "vipPrice": 299.99, "vipPriceUsd": "5", "minDonation": 50, "orderDays": 7
+     Optional: put a payment QR code image at config/lockdown/store_qr.png and it shows on the order page.
+     A buyer gets an order code (NYX-XXXXXX) to put in the payment note. Operators and OWNERs get a message in game
+     with [Confirm] [Reject] buttons (also /lockdown store orders). Confirm only once the money is in your account.
+     Unconfirmed orders are dropped after orderDays.
+
+  PayMongo ("provider": "paymongo") - fully automatic, GCash, Maya, QR Ph, cards (when PayMongo sign-ups are open):
+       "paymongoSecretKey": "sk_test_..." (fake payments) or "sk_live_...", "paymentMethods": ["gcash", "paymaya", "qrph", "card"]
+     Payments reach the game within about 10 seconds; no confirming needed.
+
+  Paid orders are logged in config/lockdown/store_state.json; /lockdown ranks lists ranks and donation totals.
+  Cracked players (EasyAuth) are known only by name: whoever joins with that name has its VIP.
