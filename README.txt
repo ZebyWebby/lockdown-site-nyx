@@ -2,7 +2,7 @@ LOCKDOWN: SITE NYX - server setup (Minecraft Java 26.3, Fabric, PufferPanel on U
 ==================================================================================
 
 What's in here
-  mods/lockdown-site-nyx-0.5.30.jar     the game
+  mods/lockdown-site-nyx-0.5.31.jar     the game
   mods/fabric-api-0.165.2+26.3.jar     needed by the game
   mods/voicechat-fabric-2.6.27+26.3.jar  Simple Voice Chat (proximity voice). Needs UDP port 24454 open.
   mods/SkinsRestorer-Mod-Fabric-15.12.6.jar  /skin <name>, /skin url <link> [classic|slim]
@@ -112,6 +112,10 @@ STORE (VIP and donations)
   PayMongo ("provider": "paymongo") - fully automatic, GCash, Maya, QR Ph, cards (when PayMongo sign-ups are open):
        "paymongoSecretKey": "sk_test_..." (fake payments) or "sk_live_...", "paymentMethods": ["gcash", "paymaya", "qrph", "card"]
      Payments reach the game within about 10 seconds; no confirming needed.
+
+  /donate (any provider, even with the store off): your own donation details, e.g. a bank transfer:
+       "donateInfo": ["BPI: <account name>", "Account: <number>"], "donateLink": "<optional link, e.g. a QR image>"
+     When a donation arrives, run  lockdown store thank <player>  for their in-game shout-out.
 
   Paid orders are logged in config/lockdown/store_state.json; /lockdown ranks lists ranks and donation totals.
   Cracked players (EasyAuth) are known only by name: whoever joins with that name has its VIP.
