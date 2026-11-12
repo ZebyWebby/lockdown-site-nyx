@@ -5,7 +5,7 @@ Every jar is pinned to the exact version (and hash) that ships in `mods/`.
 
 | mod | side | source |
 | --- | --- | --- |
-| Lockdown: Site Nyx 0.5.29 | both | this repo (`mods/`) |
+| Lockdown: Site Nyx 0.5.30 | both | this repo (`mods/`) |
 | Fabric API 0.165.2+26.3 | both | Modrinth |
 | Simple Voice Chat 2.6.27+26.3 | both | Modrinth |
 | EasyAuth 3.4.4 | server | Modrinth |

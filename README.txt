@@ -2,7 +2,7 @@ LOCKDOWN: SITE NYX - server setup (Minecraft Java 26.3, Fabric, PufferPanel on U
 ==================================================================================
 
 What's in here
-  mods/lockdown-site-nyx-0.5.29.jar     the game
+  mods/lockdown-site-nyx-0.5.30.jar     the game
   mods/fabric-api-0.165.2+26.3.jar     needed by the game
   mods/voicechat-fabric-2.6.27+26.3.jar  Simple Voice Chat (proximity voice). Needs UDP port 24454 open.
   mods/SkinsRestorer-Mod-Fabric-15.12.6.jar  /skin <name>, /skin url <link> [classic|slim]
@@ -96,6 +96,18 @@ STORE (VIP and donations)
      A buyer gets an order code (NYX-XXXXXX) to put in the payment note. Operators and OWNERs get a message in game
      with [Confirm] [Reject] buttons (also /lockdown store orders). Confirm only once the money is in your account.
      Unconfirmed orders are dropped after orderDays.
+
+  Tebex ("provider": "tebex") - Tebex's webstore takes the payments (allowed for game servers), the mod gives the rank:
+     1. Make a store at tebex.io (game: Minecraft Java Edition), add a game server in the Tebex control panel
+        and copy its SECRET KEY (never share it).
+     2. Packages: VIP (one-time) with the command   lockdown store vip {username}
+                  Donation (pay what you want) with  lockdown store thank {username}
+        Set each command to run even if the player is offline. Add a description of the perks (cosmetic only).
+     3. store.json:  "enabled": true, "provider": "tebex", "tebexSecret": "<secret key>",
+                     "tebexStoreUrl": "https://<your-store>.tebex.io"
+        then lockdown store reload, and lockdown store shows "connected to Tebex store ...".
+     Purchases arrive within a couple of minutes (Tebex decides how often the server may ask). Buyers who never joined
+     get it on their first join. /store sends players to the Tebex webstore. Port 8085 isn't used in this mode.
 
   PayMongo ("provider": "paymongo") - fully automatic, GCash, Maya, QR Ph, cards (when PayMongo sign-ups are open):
        "paymongoSecretKey": "sk_test_..." (fake payments) or "sk_live_...", "paymentMethods": ["gcash", "paymaya", "qrph", "card"]
