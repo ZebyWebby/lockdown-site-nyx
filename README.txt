@@ -2,7 +2,7 @@ LOCKDOWN: SITE NYX - server setup (Minecraft Java 26.3, Fabric, PufferPanel on U
 ==================================================================================
 
 What's in here
-  mods/lockdown-site-nyx-0.5.31.jar     the game
+  mods/lockdown-site-nyx-0.5.32.jar     the game
   mods/fabric-api-0.165.2+26.3.jar     needed by the game
   mods/voicechat-fabric-2.6.27+26.3.jar  Simple Voice Chat (proximity voice). Needs UDP port 24454 open.
   mods/SkinsRestorer-Mod-Fabric-15.12.6.jar  /skin <name>, /skin url <link> [classic|slim]
@@ -59,6 +59,17 @@ CRACKED PLAYERS (EasyAuth)
 SKINS (SkinsRestorer)
   /skin <player name>          copy any premium player's skin
   /skin url <image link> [classic|slim]   use a skin image from the web (direct .png link)
+  The chosen skin is saved by SkinsRestorer in config/skinsrestorer/ (per player UUID) and put back on every join,
+  before the player is in the world. The Lockdown mod never touches skins or player profiles. If a skin doesn't stay
+  after a relog:
+  - keep config/skinsrestorer/ when updating or moving the server (the update script leaves it alone; a fresh
+    PufferPanel install or a wiped config folder loses it). Check that its players/ folder has files after a /skin.
+  - the player's UUID must stay the same: a cracked player whose EasyAuth status flips between premium and offline
+    (auth markAsOnline / markAsOffline, or a name that is also a paid account) gets another UUID, so another skin
+    and other stats. Don't toggle it once they've played.
+  - Bedrock players (Floodgate) normally show their own Bedrock skin, which Floodgate can apply again after joining.
+  - after changing SkinsRestorer's config, restart the server (or /sr reload) and relog.
+  To check, in the console:  sr status   and   skin set <skin> <player>,  then let that player relog.
 
 BEDROCK PLAYERS (Geyser + Floodgate)
   Bedrock players join with the server's address and port 19132. They don't need any mod.
@@ -114,8 +125,31 @@ STORE (VIP and donations)
      Payments reach the game within about 10 seconds; no confirming needed.
 
   /donate (any provider, even with the store off): your own donation details, e.g. a bank transfer:
-       "donateInfo": ["BPI: <account name>", "Account: <number>"], "donateLink": "<optional link, e.g. a QR image>"
-     When a donation arrives, run  lockdown store thank <player>  for their in-game shout-out.
+       "donateInfo": ["BPI: <account name>", "Account: <number>"], "donateLink": "<optional link, e.g. your Wise link>",
+       "donateQr": "<the text inside a payment QR code, e.g. InstaPay / QR Ph>", "donateQrLabel": "InstaPay QR (MariBank)"
+     They start out as the owner's Wise (@zebastianjosephvillanuevav1) and MariBank InstaPay details and QR code.
+     An older store.json whose donateInfo and donateLink are still empty gets these once; your own values are never
+     replaced, and clearing them afterwards sticks. "donateQr": "" turns the QR code off.
+     The QR code is drawn on a map: /donate (or /donate qr, or the [Show QR code] button) puts it in the player's hand
+     in the lobby so they can scan it with their phone (works on Java with or without the mod and on Bedrock). It
+     can't be dropped and goes away when they switch items, after 90 seconds, or when a round starts.
+     To change the QR code, scan yours with any QR reader app and paste its text into donateQr, then
+     lockdown store reload. Codes ending in 6304XXXX are checked (the server log warns if the checksum is wrong).
+     When a donation arrives, run  lockdown store thank <player>  for their in-game shout-out. Donations give nothing
+     else in game.
+
+NICKNAMES
+  Players: /nick <name> (3 to 16 letters, digits or _), /nick off, /nick shows the current one. Free for everyone.
+  Staff:   /lockdown nick <player> <name|off>
+  A nickname can't be another player's name or nickname, or look like a rank (admin, owner, vip, ...).
+  It shows in chat, game messages, the sidebar, the HUD, the leaderboards and /nyx stats. The name tag above the head
+  can only show the account name (changing it would lose the player's skin), so in the lobby it reads
+  "[Lv 12] Nick (AccountName)". In a round the tab list and the (mostly hidden) name tags keep the account name.
+
+SUDO
+  /sudo <player> <command>       runs the command as that player (with their permissions)
+  /sudo <player> c:<message>     makes them say the message in chat
+  Same as /lockdown sudo. Operators, the console, OWNER and ADMIN only; an ADMIN can't sudo an OWNER or an operator.
 
   Paid orders are logged in config/lockdown/store_state.json; /lockdown ranks lists ranks and donation totals.
   Cracked players (EasyAuth) are known only by name: whoever joins with that name has its VIP.
