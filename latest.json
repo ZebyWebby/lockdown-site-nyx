@@ -1,6 +1,6 @@
 {
-  "version": "0.5.34",
-  "sha256": "86d1b493dd4ff9867d8974d179c5269f48273cd84899a7175f94966fa205f2e4",
+  "version": "0.5.35",
+  "sha256": "2b3d667c6a0682f10df4e70ef03ba4a1d8f2864efb2e7fbe18da04c9cfbc708e",
   "extras": [
     {
       "name": "Simple Voice Chat",
