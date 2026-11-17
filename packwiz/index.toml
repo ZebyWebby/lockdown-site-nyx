@@ -42,7 +42,7 @@ metafile = true
 
 [[files]]
 file = "mods/lockdown-site-nyx.pw.toml"
-hash = "038d0aa3fce7877d6032ff5419af5ce6a96dfb965c13a9ba5914dbc16642f60a"
+hash = "d37313203c125ec11a56b5bae999c46d9b63af5a01d2c2a545f053b9fd587c04"
 metafile = true
 
 [[files]]
