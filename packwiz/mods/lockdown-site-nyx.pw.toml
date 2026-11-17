@@ -1,8 +1,8 @@
 name = "Lockdown: Site Nyx"
-filename = "lockdown-site-nyx-0.5.44.jar"
+filename = "lockdown-site-nyx-0.5.45.jar"
 side = "both"
 
 [download]
-url = "https://raw.githubusercontent.com/ZebyWebby/lockdown-site-nyx/main/mods/lockdown-site-nyx-0.5.44.jar"
+url = "https://raw.githubusercontent.com/ZebyWebby/lockdown-site-nyx/main/mods/lockdown-site-nyx-0.5.45.jar"
 hash-format = "sha256"
-hash = "2dc02f7cd0c62d81e7cddefacf3be6c5b6990241f5015bda9b2253c2b8638eb4"
+hash = "cac828c81505c3b6178835a04af2b67d51debee1ad461bed2dad36d3a2e61989"
