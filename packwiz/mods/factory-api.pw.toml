@@ -1,6 +1,6 @@
 name = "Factory API"
 filename = "FactoryAPI-26.3-2.2.10-fabric.jar"
-side = "both"
+side = "server"
 
 [download]
 url = "https://raw.githubusercontent.com/ZebyWebby/lockdown-site-nyx/main/mods/FactoryAPI-26.3-2.2.10-fabric.jar"

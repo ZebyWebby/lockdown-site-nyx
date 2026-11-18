@@ -14,8 +14,8 @@ RAW = 'https://raw.githubusercontent.com/ZebyWebby/lockdown-site-nyx/main/'
 SERVER_ONLY = ('easyauth', 'skinsrestorer', 'geyser', 'floodgate')   # project slugs / name prefixes that clients don't need
 # local mods not on Modrinth: map filename prefix -> (name, side, version)
 LOCAL_MODS = {
-    'Legacy4J-': ('Legacy4J', 'both', '26.3-1.9.1'),
-    'FactoryAPI-': ('Factory API', 'both', '26.3-2.2.10'),
+    'Legacy4J-': ('Legacy4J', 'server', '26.3-1.9.1'),
+    'FactoryAPI-': ('Factory API', 'server', '26.3-2.2.10'),
 }
 
 
