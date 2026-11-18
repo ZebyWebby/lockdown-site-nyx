@@ -1,0 +1,13 @@
+name = "Legacy4J"
+filename = "Legacy4J-26.3-1.9.1-fabric.jar"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/ZebyWebby/lockdown-site-nyx/main/mods/Legacy4J-26.3-1.9.1-fabric.jar"
+hash-format = "sha256"
+hash = "d3d3dab054c9c44e7c253df50e319bd636d79c035f9f011fcba6eb133d2161a3"
+
+[update]
+[update.modrinth]
+mod-id = "legacy4j"
+version = "26.3-1.9.1"

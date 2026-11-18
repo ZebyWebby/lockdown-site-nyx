@@ -1,0 +1,13 @@
+name = "Factory API"
+filename = "FactoryAPI-26.3-2.2.10-fabric.jar"
+side = "both"
+
+[download]
+url = "https://raw.githubusercontent.com/ZebyWebby/lockdown-site-nyx/main/mods/FactoryAPI-26.3-2.2.10-fabric.jar"
+hash-format = "sha256"
+hash = "41c98c3e4dec956670c154fa96b5702dcf67210ffa16b2d979d52cb635409b4d"
+
+[update]
+[update.modrinth]
+mod-id = "factory-api"
+version = "26.3-2.2.10"

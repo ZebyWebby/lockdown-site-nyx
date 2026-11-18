@@ -12,6 +12,11 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PW = os.path.join(ROOT, 'packwiz')
 RAW = 'https://raw.githubusercontent.com/ZebyWebby/lockdown-site-nyx/main/'
 SERVER_ONLY = ('easyauth', 'skinsrestorer', 'geyser', 'floodgate')   # project slugs / name prefixes that clients don't need
+# local mods not on Modrinth: map filename prefix -> (name, side, version)
+LOCAL_MODS = {
+    'Legacy4J-': ('Legacy4J', 'both', '26.3-1.9.1'),
+    'FactoryAPI-': ('Factory API', 'both', '26.3-2.2.10'),
+}
 
 
 def sha(path, algo):
@@ -56,6 +61,20 @@ def main():
             wanted['lockdown-site-nyx.pw.toml'] = (
                 f'name = "Lockdown: Site Nyx"\nfilename = {q(jar)}\nside = "both"\n\n[download]\n'
                 f'url = {q(RAW + "mods/" + jar)}\nhash-format = "sha256"\nhash = {q(sha(path, "sha256"))}\n')
+            continue
+        # check for local mods not on Modrinth
+        local = None
+        for prefix, (lname, lside, lversion) in LOCAL_MODS.items():
+            if jar.startswith(prefix):
+                local = (lname, lside, lversion)
+                break
+        if local:
+            lname, lside, lversion = local
+            slug = lname.lower().replace(' ', '-')
+            wanted[f'{slug}.pw.toml'] = (
+                f'name = {q(lname)}\nfilename = {q(jar)}\nside = {q(lside)}\n\n[download]\n'
+                f'url = {q(RAW + "mods/" + jar)}\nhash-format = "sha256"\nhash = {q(sha(path, "sha256"))}\n\n'
+                f'[update]\n[update.modrinth]\nmod-id = {q(slug)}\nversion = {q(lversion)}\n')
             continue
         p, v, f = modrinth(sha(path, 'sha512'))
         slug = p['slug']

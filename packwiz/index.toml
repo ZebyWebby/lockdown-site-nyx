@@ -31,6 +31,11 @@ hash = "79de372a05dde6ee4f23ced936835dbd9d43b64ba61ae1990cb0e59dce460e6a"
 metafile = true
 
 [[files]]
+file = "mods/factory-api.pw.toml"
+hash = "5feb2562cfc18e502ef86450a22bec5fd93864a6b53be1a4c8036f6e7762f604"
+metafile = true
+
+[[files]]
 file = "mods/floodgate.pw.toml"
 hash = "8f2df04d5d7caa0af5ef817bd9b0aa7614dc9aa5c120805728931ebbc7807bc3"
 metafile = true
@@ -38,6 +43,11 @@ metafile = true
 [[files]]
 file = "mods/geyser.pw.toml"
 hash = "70175bbf73f944a5823377a9ec193853331f6c8c754cfaa1437cd2c803f02930"
+metafile = true
+
+[[files]]
+file = "mods/legacy4j.pw.toml"
+hash = "c82d51e8136849be4e0fa196ee27961297298970b37495a5e1b239226733e3e1"
 metafile = true
 
 [[files]]
